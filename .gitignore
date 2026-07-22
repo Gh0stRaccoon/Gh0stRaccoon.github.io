@@ -1,24 +1,35 @@
-# build output
-dist/
-
-# generated types
-.astro/
-
-# dependencies
+# Dependencies
 node_modules/
 
-# logs
+# Build and Output
+dist/
+.output/
+.astro/
+
+# Environment Variables and Secret Keys
+.env
+.env.*
+!.env.example
+
+# Logs and Debugging
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
+# OS & System Files
 .DS_Store
+Thumbs.db
+*.swp
+*.swo
 
-# jetbrains setting folder
+# IDEs and Editors
 .idea/
+.vscode/
+
+# Agent / AI Assistant Skills & Tooling Caches
+.agents/
+.agent/
+.atl/
+skills-lock.json

@@ -1,11 +1,44 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import BentoPhilosophy from "../components/BentoPhilosophy.astro";
+import ProjectBentoCard from "../components/ProjectBentoCard.astro";
+import Toolbox from "../components/Toolbox.astro";
+import AboutContact from "../components/AboutContact.astro";
+import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+// Project display order
+const order = ["Merme", "Pnut", "Kori", "Waldorf Almar"];
+projects.sort(
+  (a, b) => order.indexOf(a.data.title) - order.indexOf(b.data.title),
+);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Joaquín Ossandón | Portafolio">
+  <Navigation />
+  <main class="pt-32 md:pt-36 pb-20 px-6 max-w-7xl mx-auto">
+    <Hero />
+    <BentoPhilosophy />
+
+    <section class="mb-16" id="portfolio" aria-label="Proyectos seleccionados">
+      <h2
+        class="text-3xl font-black tracking-tight mb-8 px-2 uppercase text-[12px] tracking-[0.2em] text-on-surface-variant scroll-reveal-title"
+      >
+        Proyectos Seleccionados
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {projects.map((project) => <ProjectBentoCard project={project} />)}
+      </div>
+    </section>
+
+    <Toolbox />
+
+    <AboutContact />
+  </main>
+  <Footer />
 </Layout>

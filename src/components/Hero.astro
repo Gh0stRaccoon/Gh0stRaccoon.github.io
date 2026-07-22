@@ -1,0 +1,77 @@
+---
+
+---
+
+<section class="mb-4" aria-label="Presentación principal">
+  <div
+    class="relative bg-surface-container-low rounded-xl p-8 md:p-16 min-h-[500px] flex flex-col justify-center"
+  >
+    <!-- Substrate Organic Shapes (clippear solo el fondo) -->
+    <div
+      class="absolute inset-0 z-0 opacity-40 rounded-xl overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute -top-20 -left-20 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply blur-3xl scroll-orb-1"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 -right-20 w-80 h-80 bg-tertiary-container rounded-full mix-blend-multiply blur-3xl scroll-orb-2"
+      >
+      </div>
+      <div
+        class="absolute -bottom-20 left-1/2 w-64 h-64 bg-surface-container-highest rounded-full mix-blend-multiply blur-3xl scroll-orb-1"
+      >
+      </div>
+    </div>
+
+    <!-- Text & Content -->
+    <div class="relative z-10 max-w-lg lg:max-w-xl">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-primary mb-5 leading-[1.12]"
+      >
+        Construyo software con sentido para personas y negocios.
+      </h1>
+      <p
+        class="text-base md:text-lg text-on-surface-variant leading-relaxed mb-8 font-body"
+      >
+        Soy desarrollador de software e instructor. Me enfoco en diseñar
+        productos simples, escalables y orientados a resolver problemas reales,
+        cuidando la arquitectura tanto como la experiencia de usuario.
+      </p>
+      <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+        <a
+          href="#portfolio"
+          class="bg-primary text-on-primary px-7 py-3.5 rounded-full text-sm sm:text-base font-bold hover:scale-95 transition-all duration-200 inline-flex items-center gap-2"
+        >
+          Ver proyectos <span class="material-symbols-outlined text-sm" aria-hidden="true"
+            >arrow_downward</span
+          >
+        </a>
+        <a
+          href="#contact"
+          class="bg-surface-container-high text-primary border border-outline/20 px-7 py-3.5 rounded-full text-sm sm:text-base font-bold hover:bg-surface-container-highest transition-all duration-200 inline-block"
+        >
+          Conversemos
+        </a>
+      </div>
+    </div>
+
+    <!-- Transparent Photo with 110% height overflow (top head overhangs, bottom flush to card base) -->
+    <div
+      class="absolute right-2 lg:right-10 bottom-0 z-20 hidden md:flex items-end h-[115%] pointer-events-none select-none"
+    >
+      <picture class="h-full w-auto block">
+        <source srcset="/portfolio_photo.webp" type="image/webp" />
+        <img
+          src="/portfolio_photo.png"
+          alt="Joaquín Ossandón"
+          class="h-full w-auto object-contain object-bottom origin-bottom scroll-hero-photo"
+          style="filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </picture>
+    </div>
+  </div>
+</section>

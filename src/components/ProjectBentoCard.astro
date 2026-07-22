@@ -1,0 +1,152 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { title, description, tags, categories, image, status, demoUrl } =
+  project.data;
+
+const baseImageUrl = image.url.replace(/\.(png|jpg|jpeg|webp)$/, "");
+const webpUrl = `${baseImageUrl}.webp`;
+const jpgUrl = `${baseImageUrl}.jpg`;
+const isLocalImage = image.url.startsWith("/");
+---
+
+<div
+  class="text-on-surface rounded-3xl overflow-hidden flex flex-col border border-outline/15 hover:border-outline/30 transition-all duration-300 group shadow-sm hover:shadow-md hover:-translate-y-1.5 scroll-reveal-card"
+>
+  <!-- Full-bleed Image Top Section with Aspect Ratio 16:10 -->
+  <div
+    class="relative w-full aspect-[16/10] overflow-hidden flex-shrink-0 z-10"
+  >
+    {
+      isLocalImage ? (
+        <picture class="w-full h-full block">
+          <source srcset={webpUrl} type="image/webp" />
+          <source srcset={jpgUrl} type="image/jpeg" />
+          <img
+            class="w-full h-full object-cover object-top origin-top group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+            alt={image.alt}
+            src={jpgUrl}
+            loading="lazy"
+          />
+        </picture>
+      ) : (
+        <img
+          class="w-full h-full object-cover object-top origin-top group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+          alt={image.alt}
+          src={image.url}
+          loading="lazy"
+        />
+      )
+    }
+
+    <!-- Smooth gradient blend from image to content card background -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-16 z-10 pointer-events-none"
+      style="background: linear-gradient(to top, var(--color-surface-container-high) 0%, rgba(229, 233, 230, 0.5) 40%, transparent 100%);"
+    >
+    </div>
+
+    <!-- Category Floating Badges (Top Left) -->
+    <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+      {
+        categories.map((cat: string) => (
+          <span class="bg-zinc-900/85 backdrop-blur-md text-zinc-100 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/10 shadow-sm">
+            {cat}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Top Right Floating Action Icon or Status -->
+    {
+      demoUrl ? (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-zinc-900/85 backdrop-blur-md border border-white/15 flex items-center justify-center text-white hover:bg-primary transition-all shadow-md group/btn"
+          title={`Visitar ${title}`}
+          aria-label={`Visitar sitio web de ${title}`}
+        >
+          <span class="material-symbols-outlined text-base group-hover/btn:rotate-45 transition-transform" aria-hidden="true">
+            north_east
+          </span>
+        </a>
+      ) : status ? (
+        <div class="absolute top-4 right-4 z-10">
+          <span
+            class={`backdrop-blur-md text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5 border bg-zinc-900/85 text-zinc-200 border-white/10`}
+          >
+            <span
+              class={`w-1.5 h-1.5 rounded-full ${status.includes("desarrollo") ? "bg-amber-400 animate-pulse" : "bg-zinc-400"}`}
+              aria-hidden="true"
+            />
+            {status}
+          </span>
+        </div>
+      ) : null
+    }
+  </div>
+
+  <!-- Content Section - Overlapping 2px with z-20 to completely block subpixel rendering gaps -->
+  <div
+    class="p-6 sm:p-7 flex flex-col flex-1 justify-between bg-surface-container-high relative z-20 rounded-b-3xl"
+  >
+    <div>
+      <!-- Title -->
+      <h3
+        class="text-2xl font-bold text-primary tracking-tight group-hover:text-secondary transition-colors mb-2"
+      >
+        {title}
+      </h3>
+
+      <!-- Description -->
+      <p class="text-on-surface-variant leading-relaxed text-sm font-body mb-6">
+        {description}
+      </p>
+    </div>
+
+    <div>
+      <!-- Tech Stack Pills (Bottom) -->
+      <div class="flex flex-wrap gap-2 mb-6" aria-label={`Tecnologías usadas en ${title}`}>
+        {
+          tags.map((tag: string) => (
+            <span class="text-xs font-mono font-medium px-3 py-1 rounded-full bg-surface-container-lowest text-primary border border-outline/10">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <!-- Action Button -->
+      {
+        demoUrl ? (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full bg-primary text-on-primary hover:bg-secondary font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-all duration-200 shadow-sm text-sm"
+            aria-label={`Visitar sitio web de ${title}`}
+          >
+            <span>Visitar sitio web</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">
+              arrow_forward
+            </span>
+          </a>
+        ) : (
+          <div class="w-full bg-surface-container-highest text-on-surface-variant font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-sm border border-outline/20">
+            <span>{status || "Proyecto Interno"}</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">
+              {status?.includes("desarrollo") ? "construction" : "lock"}
+            </span>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>
