@@ -25,20 +25,22 @@
       </p>
     </div>
     <div class="flex flex-col gap-4">
-      <a 
-        class="flex items-center justify-between p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest/70 text-on-secondary-container font-bold transition-all group" 
-        href="mailto:hola@joaquin.com"
-        aria-label="Enviar un correo electrónico a hola@joaquin.com"
+      <button 
+        type="button"
+        class="flex items-center justify-between p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest/70 text-on-secondary-container font-bold transition-all group w-full text-left cursor-pointer email-protected-btn" 
+        data-u="am9hcXVpbm9zc2FuZG9uZw=="
+        data-d="Z21haWwuY29t"
+        aria-label="Enviar un correo electrónico a Joaquín"
       >
         <div class="flex items-center gap-3">
           <span class="material-symbols-outlined" aria-hidden="true">mail</span>
           <span>Email</span>
         </div>
         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-      </a>
+      </button>
       <a 
         class="flex items-center justify-between p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest/70 text-on-secondary-container font-bold transition-all group" 
-        href="https://linkedin.com" 
+        href="https://cl.linkedin.com/in/joaquinossandong" 
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visitar perfil de LinkedIn (se abre en nueva pestaña)"
@@ -51,7 +53,7 @@
       </a>
       <a 
         class="flex items-center justify-between p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest/70 text-on-secondary-container font-bold transition-all group" 
-        href="https://github.com" 
+        href="https://github.com/Gh0stRaccoon/" 
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visitar perfil de GitHub (se abre en nueva pestaña)"
@@ -65,3 +67,17 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.email-protected-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLElement;
+      const u = target.getAttribute('data-u');
+      const d = target.getAttribute('data-d');
+      if (u && d) {
+        window.location.href = `mailto:${atob(u)}@${atob(d)}`;
+      }
+    });
+  });
+</script>
