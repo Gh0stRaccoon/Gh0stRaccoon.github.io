@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/Navigation.astro";
 import Hero from "../components/Hero.astro";
 import BentoPhilosophy from "../components/BentoPhilosophy.astro";
+import Experience from "../components/Experience.astro";
 import ProjectBentoCard from "../components/ProjectBentoCard.astro";
 import Toolbox from "../components/Toolbox.astro";
 import AboutContact from "../components/AboutContact.astro";
@@ -21,9 +22,10 @@ projects.sort(
 
 <Layout title="Joaquín Ossandón | Portafolio">
   <Navigation />
-  <main class="pt-32 md:pt-36 pb-20 px-6 max-w-7xl mx-auto">
+  <main class="pt-32 md:pt-30 pb-20 px-6 max-w-5xl mx-auto">
     <Hero />
     <BentoPhilosophy />
+    <Experience />
 
     <section class="mb-16" id="portfolio" aria-label="Proyectos seleccionados">
       <h2
