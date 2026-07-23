@@ -95,11 +95,11 @@
       grid-template-columns: 1fr;
     }
   }
+}
 
-  .glass-nav {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
+@utility glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Scroll-Driven Animations (Nativas CSS) */
