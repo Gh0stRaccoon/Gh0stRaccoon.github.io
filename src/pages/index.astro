@@ -14,7 +14,7 @@ import { getCollection } from "astro:content";
 const projects = await getCollection("projects");
 
 // Project display order
-const order = ["Merme", "Pnut", "Kori", "Waldorf Almar"];
+const order = ["Explora", "Merme", "Pnut", "Kori", "Waldorf Almar"];
 projects.sort(
   (a, b) => order.indexOf(a.data.title) - order.indexOf(b.data.title),
 );
